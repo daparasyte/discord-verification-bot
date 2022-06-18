@@ -72,7 +72,7 @@ class Captcha(View):
             emb = nextcord.Embed(
                 title='Captcha Verification!',
                 description=f'Press each letter one-by-one using the buttons below.\n\n**Attempts left: 3**',
-                colour=nextcord.Colour.blue()
+                colour=nextcord.Colour.orange()
             )
             f = nextcord.File("captcha1.png", filename='captcha.png')
             emb.set_image(url="attachment://captcha.png")
@@ -128,7 +128,7 @@ class button1(Button):
                     else:
                         fail = nextcord.Embed(
                             title='Verification Failed!',
-                            description='For security reasons you will be kicked from the server within 30 seconds.\n\n You can rejoin using the server link later.',
+                            description='You have exceeded the allowable attempts limit. For security reasons you will be kicked from the server within 30 seconds.\n\n You can rejoin using the server link and verify yourself again.',
                             colour=nextcord.Colour.red()
                         )
                         wrong = nextcord.File('wrong.png', filename='wrong.png')
@@ -139,7 +139,7 @@ class button1(Button):
                         await interaction.user.kick()
                         reason = nextcord.Embed(
                             title="Failed to Verify!",
-                            description="For security reasons, we have decided to kick you.\nYou may rejoin for verification using the link below.\n\nhttps://discord.gg/h3mYpSfeMX",
+                            description="For security reasons, we have decided to kick you.\nYou may rejoin for verification using the link below.\n\n*insert your server link here*",
                         colour = nextcord.Colour.blue()
                         )
                         await interaction.user.send(embed=reason)
@@ -191,7 +191,7 @@ class button2(Button):
                     else:
                         fail = nextcord.Embed(
                             title='Verification Failed!',
-                            description='For security reasons you will be kicked from the server within 30 seconds.\n\n You can rejoin using the server link later.',
+                            description='You have exceeded the allowable attempts limit. For security reasons you will be kicked from the server within 30 seconds.\n\n You can rejoin using the server link and verify yourself again.',
                             colour=nextcord.Colour.red()
                         )
                         wrong = nextcord.File('wrong.png', filename='wrong.png')
@@ -202,7 +202,7 @@ class button2(Button):
                         await interaction.user.kick()
                         reason = nextcord.Embed(
                             title="Failed to Verify!",
-                            description="For security reasons, we have decided to kick you.\nYou may rejoin for verification using the link below.\n\nhttps://discord.gg/h3mYpSfeMX",
+                            description="For security reasons, we have decided to kick you.\nYou may rejoin for verification using the link below.\n\n*insert your server link here*",
                         colour = nextcord.Colour.blue()
                         )
                         await interaction.user.send(embed=reason)
@@ -254,7 +254,7 @@ class button3(Button):
                     else:
                         fail = nextcord.Embed(
                             title='Verification Failed!',
-                            description='For security reasons you will be kicked from the server within 30 seconds.\n\n You can rejoin using the server link later.',
+                            description='You have exceeded the allowable attempts limit. For security reasons you will be kicked from the server within 30 seconds.\n\n You can rejoin using the server link and verify yourself again.',
                             colour=nextcord.Colour.red()
                         )
                         wrong = nextcord.File('wrong.png', filename='wrong.png')
@@ -265,7 +265,7 @@ class button3(Button):
                         await interaction.user.kick()
                         reason = nextcord.Embed(
                             title="Failed to Verify!",
-                            description="For security reasons, we have decided to kick you.\nYou may rejoin for verification using the link below.\n\nhttps://discord.gg/h3mYpSfeMX",
+                            description="For security reasons, we have decided to kick you.\nYou may rejoin for verification using the link below.\n\n*insert your server link here*",
                         colour = nextcord.Colour.blue()
                         )
                         await interaction.user.send(embed=reason)
@@ -317,7 +317,7 @@ class button4(Button):
                     else:
                         fail = nextcord.Embed(
                             title='Verification Failed!',
-                            description='For security reasons you will be kicked from the server within 30 seconds.\n\n You can rejoin using the server link later.',
+                            description='You have exceeded the allowable attempts limit. For security reasons you will be kicked from the server within 30 seconds.\n\n You can rejoin using the server link and verify yourself again.',
                             colour=nextcord.Colour.red()
                         )
                         wrong = nextcord.File('wrong.png', filename='wrong.png')
@@ -389,7 +389,7 @@ class button5(Button):
                     else:
                         fail = nextcord.Embed(
                             title='Verification Failed!',
-                            description='For security reasons you will be kicked from the server within 30 seconds.\n\n You can rejoin using the server link later.',
+                            description='You have exceeded the allowable attempts limit. For security reasons you will be kicked from the server within 30 seconds.\n\n You can rejoin using the server link and verify yourself again.',
                             colour=nextcord.Colour.red()
                         )
                         wrong = nextcord.File('wrong.png', filename='wrong.png')
@@ -400,7 +400,7 @@ class button5(Button):
                         await interaction.user.kick()
                         reason = nextcord.Embed(
                             title="Failed to Verify!",
-                            description="For security reasons, we have decided to kick you.\nYou may rejoin for verification using the link below.\n\nhttps://discord.gg/h3mYpSfeMX",
+                            description="For security reasons, we have decided to kick you.\nYou may rejoin for verification using the link below.\n\n*insert your server link here*",
                         colour = nextcord.Colour.blue()
                         )
                         await interaction.user.send(embed=reason)
@@ -457,7 +457,7 @@ class New(Button):
             emb_new = nextcord.Embed(
                 title='Captcha Verification!',
                 description=f'Press each letter one-by-one using the buttons below.\n\n**Attempts left: {str(n)}**',
-                colour=nextcord.Colour.blue()
+                colour=nextcord.Colour.orange()
             )
             f = nextcord.File("captcha2.png", filename='captcha2.png')
             emb_new.set_image(url="attachment://captcha2.png")
@@ -562,21 +562,19 @@ class Layout(View):
 
         self.add_item(New("New Captcha", nextcord.ButtonStyle.red, "🔁"))
 
-        # async def on_timeout(self):
-        #     channel = bot.get_channel(953689879953416234,964478981267148801)
-        #     await channel.edit("Time\'s up!", view=self)
-
 
 @bot.event
 async def on_ready():
     print("Bot running...")
-    channel1 = bot.get_channel(964478981267148801)
+    channel = os.getenv('VERIFICATION_CHANNEL_ID')
+    channel1 = bot.get_channel(int(channel))
     await channel1.purge(limit=50)
 
 
 @bot.event
 async def on_member_join(member):
-    channel1 = bot.get_channel(964478981267148801)
+    channel = os.getenv('VERIFICATION_CHANNEL_ID')
+    channel1 = bot.get_channel(int(channel))
     await channel1.send(f'{member.mention}')
     await channel1.purge(limit=1)
 
@@ -590,7 +588,7 @@ async def on_message(message):
         view = Captcha()
         embed = nextcord.Embed(
             title='Server Verification!',
-            description='To prevent bot abuse, new members are required to verify in this server.\n\n**Please complete the verification promptly**\n\nPress the button below to begin the verification process.',
+            description='To prevent bot abuse, new members are required to verify in this server.\n\nTo begin verification please press the button below.\n\n*Note: You must verify yourself in order to gain access to the server!*',
             colour=nextcord.Colour.blue()
         )
         await message.channel.send(embed=embed, view=view)
