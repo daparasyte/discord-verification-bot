@@ -1,0 +1,1 @@
+23062022-104035       -time at which captcha was generated for the user 
