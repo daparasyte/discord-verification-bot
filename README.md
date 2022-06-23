@@ -2,7 +2,7 @@
 Make your own Captcha verification bot for your discord servers using Python and Nextcord.
 
 ## How To Get Started:
-1. Download the code: https://github.com/daparasyte/discord-verification-bot/archive/refs/heads/main.zip
+1. Download the [code](https://github.com/daparasyte/discord-verification-bot/archive/refs/heads/main.zip) from this repo. 
 2. Install dependencies using: `pip install -r requirements.txt`
 3. Create your discord bot in https://discord.com/developers/applications and invite the bot in your server
 4. Copy the bot token and paste it in the `.env` file.
