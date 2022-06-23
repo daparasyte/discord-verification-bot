@@ -4,7 +4,7 @@ Make your own Captcha verification bot for your discord servers using Python and
 ## How To Get Started:
 1. Download the [code](https://github.com/daparasyte/discord-verification-bot/archive/refs/heads/main.zip) from this repo. 
 2. Install dependencies using: `pip install -r requirements.txt`
-3. Create your discord bot in https://discord.com/developers/applications and invite the bot in your server
+3. Create your discord bot [here](https://discord.com/developers/applications) and invite the bot in your server
 4. Copy the bot token and paste it in the `.env` file.
 5. Create a channel in your discord server where you want to run the bot and paste this channel's ID in the `.env` file (you need to turn on developer mode from discord setting to copy the IDs).
 6. Create a verified role for your server and paste the role ID in the `.env` file.
