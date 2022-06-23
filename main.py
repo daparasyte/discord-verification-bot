@@ -362,6 +362,8 @@ class button5(Button):
             await interaction.edit(content=None, embed=emb, view=None, file=ver, delete_after=30, attachments=[])
             time.sleep(5)
             await interaction.user.add_roles(role)
+        os.remove(f"captchaFolder/captcha_{ID}.txt")
+        os.remove(f"Counter/counter_{ID}.txt")
         else:
             self.style = nextcord.ButtonStyle.red
             self.disabled = True
@@ -403,8 +405,6 @@ class button5(Button):
                         )
                         await interaction.user.send(embed=reason)
             await interaction.edit(view=self.view)
-        os.remove(f"captchaFolder/captcha_{ID}.txt")
-        os.remove(f"Counter/counter_{ID}.txt")
 
 class New(Button):
     def __init__(self, label, style, emoji):
